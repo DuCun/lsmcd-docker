@@ -1,5 +1,5 @@
 #!/bin/sh
 set -eu
 
-/usr/local/lsmcd/bin/lsmcdctrl start
+systemctl start lsmcd
 exec tail -f /tmp/lsmcd.log
