@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:bookworm
 
 # 更新包列表并安装依赖
 RUN apt-get update \
@@ -13,7 +13,7 @@ RUN apt-get update \
     libsasl2-dev \
     libpcre3-dev \
     sasl2-bin \
-    systemd-sysv \
+    #systemd \
     # 克隆并构建lsmcd
     && wget https://github.com/litespeedtech/lsmcd/archive/refs/heads/master.tar.gz -O lsmcd.tar.gz \
     && tar -zxvf lsmcd.tar.gz \
@@ -40,7 +40,7 @@ RUN apt-get update \
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
-RUN systemctl enable lsmcd.service
+#RUN systemctl enable lsmcd.service
 
 EXPOSE 11211
-ENTRYPOINT ["/sbin/entrypoint.sh"]
+#ENTRYPOINT ["/sbin/entrypoint.sh"]
