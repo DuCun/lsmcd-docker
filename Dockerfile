@@ -21,10 +21,10 @@ RUN apt-get update \
     && ./fixtimestamp.sh \
     && ./configure CFLAGS="-O3" CXXFLAGS="-O3" \
     && make \
-    && make install
+    && make install \
     # 清理工作目录和缓存
-    # && cd / \
-    # && rm -rf /lsmcd-master \
+    && cd / \
+    && rm -rf /lsmcd-master lsmcd.tar.gz
     # && apt-get purge -y --auto-remove \
     # wget \
     # ca-certificates \
@@ -40,6 +40,7 @@ RUN apt-get update \
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
+RUN systemctl enable lsmcd
 
 EXPOSE 11211
 ENTRYPOINT ["/sbin/entrypoint.sh"]
