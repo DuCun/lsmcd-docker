@@ -14,6 +14,7 @@ RUN apt-get update \
     libpcre3-dev \
     sasl2-bin \
     systemd \
+    systemctl \
     # 克隆并构建lsmcd
     && wget https://github.com/litespeedtech/lsmcd/archive/refs/heads/master.tar.gz -O lsmcd.tar.gz \
     && tar -zxvf lsmcd.tar.gz \
@@ -23,20 +24,20 @@ RUN apt-get update \
     && make \
     && make install \
     # 清理工作目录和缓存
-    && cd / \
-    && rm -rf /lsmcd-master \
-    && apt-get purge -y --auto-remove \
-    wget \
-    ca-certificates \
-    build-essential \
-    zlib1g-dev \
-    libexpat1-dev \
-    openssl \
-    libssl-dev \
-    libsasl2-dev \
-    libpcre3-dev \
-    sasl2-bin \
-    && rm -rf /var/lib/apt/lists/*
+    # && cd / \
+    # && rm -rf /lsmcd-master \
+    # && apt-get purge -y --auto-remove \
+    # wget \
+    # ca-certificates \
+    # build-essential \
+    # zlib1g-dev \
+    # libexpat1-dev \
+    # openssl \
+    # libssl-dev \
+    # libsasl2-dev \
+    # libpcre3-dev \
+    # sasl2-bin \
+    # && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
