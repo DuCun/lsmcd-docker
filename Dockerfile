@@ -21,7 +21,7 @@ RUN apt-get update \
     && ./fixtimestamp.sh \
     && ./configure CFLAGS="-O3" CXXFLAGS="-O3" \
     && make \
-    && make install \
+    && make install
     # 清理工作目录和缓存
     # && cd / \
     # && rm -rf /lsmcd-master \
